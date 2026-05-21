@@ -50,6 +50,43 @@ install.packages(c(
 ))
 ```
 
+## Requirements with version numbers
+
+This project now includes dependency files:
+
+- `requirements.R`: checks and optionally installs required R packages.
+- `REQUIREMENTS.md`: lists the required R version and package versions.
+- `DESCRIPTION`: provides a standard R-project dependency declaration.
+
+Recommended minimum R version:
+
+```text
+R >= 4.3.0
+```
+
+Install or check package dependencies with:
+
+```r
+source("requirements.R")
+check_project_requirements(install_missing = TRUE, update_outdated = TRUE)
+```
+
+Export the package versions actually used in your local environment with:
+
+```r
+source("requirements.R")
+write_session_info("session_info.txt")
+```
+
+For exact reproducibility, use `renv` after confirming the script runs:
+
+```r
+install.packages("renv")
+renv::init()
+source("requirements.R")
+check_project_requirements(install_missing = TRUE, update_outdated = TRUE)
+renv::snapshot()
+```
 
 ## Run
 
